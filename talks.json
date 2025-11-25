@@ -1,0 +1,44 @@
+[
+  {
+    "title": "The Future of Artificial Intelligence",
+    "speakers": ["Dr. Evelyn Reed"],
+    "category": ["AI", "Machine Learning"],
+    "duration": "1 hour",
+    "description": "A deep dive into the latest advancements in AI and what to expect in the coming years."
+  },
+  {
+    "title": "Building Scalable Web Applications",
+    "speakers": ["John Smith", "Jane Doe"],
+    "category": ["Web Development", "Scalability"],
+    "duration": "1 hour",
+    "description": "Learn the best practices for designing and building web applications that can handle millions of users."
+  },
+  {
+    "title": "Cybersecurity in the Modern Age",
+    "speakers": ["Alex Chen"],
+    "category": ["Cybersecurity"],
+    "duration": "1 hour",
+    "description": "An overview of the current cybersecurity landscape and how to protect your systems from emerging threats."
+  },
+  {
+    "title": "The Power of Quantum Computing",
+    "speakers": ["Dr. Maria Petrova"],
+    "category": ["Quantum Computing", "Physics"],
+    "duration": "1 hour",
+    "description": "Explore the mind-bending world of quantum computing and its potential to revolutionize science and technology."
+  },
+  {
+    "title": "Introduction to Blockchain Technology",
+    "speakers": ["David Lee"],
+    "category": ["Blockchain", "Cryptocurrency"],
+    "duration": "1 hour",
+    "description": "A beginner-friendly introduction to the fundamentals of blockchain technology and its applications."
+  },
+  {
+    "title": "The Art of UI/UX Design",
+    "speakers": ["Emily White"],
+    "category": ["UI/UX", "Design"],
+    "duration": "1 hour",
+    "description": "Discover the principles of creating beautiful, intuitive, and user-friendly interfaces."
+  }
+]

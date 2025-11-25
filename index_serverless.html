@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Talks Today</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .search-container {
+            margin-top: 1rem;
+        }
+
+        #searchInput {
+            width: 80%;
+            max-width: 400px;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #schedule {
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .talk {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            padding: 1rem;
+        }
+
+        .talk h2 {
+            margin-top: 0;
+        }
+
+        .talk .details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .talk .category {
+            font-style: italic;
+        }
+
+        .break {
+            background-color: #eee;
+            text-align: center;
+            padding: 2rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tech Talks Today</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search by category...">
+        </div>
+    </header>
+    <main id="schedule">
+        <!-- Schedule will be dynamically generated here -->
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scheduleElement = document.getElementById('schedule');
+            const searchInput = document.getElementById('searchInput');
+            const talks = [
+              {
+                "title": "The Future of Artificial Intelligence",
+                "speakers": ["Dr. Evelyn Reed"],
+                "category": ["AI", "Machine Learning"],
+                "duration": "1 hour",
+                "description": "A deep dive into the latest advancements in AI and what to expect in the coming years."
+              },
+              {
+                "title": "Building Scalable Web Applications",
+                "speakers": ["John Smith", "Jane Doe"],
+                "category": ["Web Development", "Scalability"],
+                "duration": "1 hour",
+                "description": "Learn the best practices for designing and building web applications that can handle millions of users."
+              },
+              {
+                "title": "Cybersecurity in the Modern Age",
+                "speakers": ["Alex Chen"],
+                "category": ["Cybersecurity"],
+                "duration": "1 hour",
+                "description": "An overview of the current cybersecurity landscape and how to protect your systems from emerging threats."
+              },
+              {
+                "title": "The Power of Quantum Computing",
+                "speakers": ["Dr. Maria Petrova"],
+                "category": ["Quantum Computing", "Physics"],
+                "duration": "1 hour",
+                "description": "Explore the mind-bending world of quantum computing and its potential to revolutionize science and technology."
+              },
+              {
+                "title": "Introduction to Blockchain Technology",
+                "speakers": ["David Lee"],
+                "category": ["Blockchain", "Cryptocurrency"],
+                "duration": "1 hour",
+                "description": "A beginner-friendly introduction to the fundamentals of blockchain technology and its applications."
+              },
+              {
+                "title": "The Art of UI/UX Design",
+                "speakers": ["Emily White"],
+                "category": ["UI/UX", "Design"],
+                "duration": "1 hour",
+                "description": "Discover the principles of creating beautiful, intuitive, and user-friendly interfaces."
+              }
+            ];
+
+            renderSchedule(talks);
+
+            searchInput.addEventListener('input', () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                const filteredTalks = talks.filter(talk => 
+                    talk.category.some(cat => cat.toLowerCase().includes(searchTerm))
+                );
+                renderSchedule(filteredTalks);
+            });
+
+            function renderSchedule(talksToRender) {
+                scheduleElement.innerHTML = '';
+                let currentTime = new Date();
+                currentTime.setHours(10, 0, 0, 0);
+
+                talksToRender.forEach((talk, index) => {
+                    const talkElement = document.createElement('div');
+                    talkElement.classList.add('talk');
+
+                    const time = `${currentTime.getHours()}:${String(currentTime.getMinutes()).padStart(2, '0')}`;
+                    currentTime.setHours(currentTime.getHours() + 1);
+                    const endTime = `${currentTime.getHours()}:${String(currentTime.getMinutes()).padStart(2, '0')}`;
+
+                    talkElement.innerHTML = `
+                        <div class="details">
+                            <span>${time} - ${endTime}</span>
+                            <span class="category">${talk.category.join(', ')}</span>
+                        </div>
+                        <h2>${talk.title}</h2>
+                        <p><strong>Speakers:</strong> ${talk.speakers.join(', ')}</p>
+                        <p>${talk.description}</p>
+                    `;
+                    scheduleElement.appendChild(talkElement);
+
+                    if (index === 2) { // Add lunch break after the 3rd talk
+                        const breakElement = document.createElement('div');
+                        breakElement.classList.add('break');
+                        const breakTime = `${currentTime.getHours()}:${String(currentTime.getMinutes()).padStart(2, '0')}`;
+                        currentTime.setHours(currentTime.getHours() + 1);
+                        const breakEndTime = `${currentTime.getHours()}:${String(currentTime.getMinutes()).padStart(2, '0')}`;
+                        breakElement.innerHTML = `<h3>Lunch Break</h3><p>${breakTime} - ${breakEndTime}</p>`;
+                        scheduleElement.appendChild(breakElement);
+                    } else if (index < talksToRender.length - 1) {
+                        currentTime.setMinutes(currentTime.getMinutes() + 10); // 10 minute transition
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
